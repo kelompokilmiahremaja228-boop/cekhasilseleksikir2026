@@ -36,7 +36,6 @@
     color:var(--text);
   }
 
-  /* ===== BLURRED BACKDROP ===== */
   .backdrop{
     position:fixed; inset:-10%;
     z-index:0;
@@ -88,7 +87,6 @@
     transition:transform .5s cubic-bezier(.19,1,.22,1), opacity .5s ease;
   }
 
-  /* ===== FORM PAGE ===== */
   .brand{
     text-align:center;
     padding:34px 26px 6px;
@@ -172,7 +170,6 @@
   }
   .fake-select.open .chevron{transform:rotate(180deg);}
 
-  /* ===== KELAS PICKER (bottom sheet, matches app theme) ===== */
   .kelas-scrim{
     position:fixed; inset:0; z-index:40;
     background:rgba(2,4,9,0.6); backdrop-filter:blur(4px);
@@ -260,7 +257,6 @@
     color:var(--text-dim); letter-spacing:0.4px; font-weight:500;
   }
 
-  /* ===== RESULT PAGE ===== */
   .rband{padding:30px 26px 24px; position:relative; overflow:hidden;}
   .rband.lulus{background:linear-gradient(135deg, #1f66b3 0%, var(--blue-deep) 100%);}
   .rband.tidak{background:linear-gradient(135deg, var(--red) 0%, var(--red-deep) 100%);}
@@ -339,7 +335,6 @@
   .btn-back{background:rgba(255,255,255,0.07); color:var(--text);}
   .btn-back:hover{background:rgba(255,255,255,0.12); transform:translateY(-2px);}
 
-  /* ===== LOADING OVERLAY ===== */
   .loading{
     position:fixed; inset:0; z-index:50;
     display:flex; align-items:center; justify-content:center;
@@ -371,7 +366,6 @@
 
 <div class="container">
 
-  <!-- ===== PAGE 1: FORM ===== -->
   <div id="page-form" class="page active">
     <div class="panel">
       <div class="brand">
@@ -413,7 +407,6 @@
     <div class="footer">&copy; 2026 KIR &mdash; Seleksi Kelompok Ilmiah Remaja</div>
   </div>
 
-  <!-- ===== PAGE 2: RESULT ===== -->
   <div id="page-result" class="page">
     <div class="panel" id="resultPanel"></div>
     <div class="footer">&copy; 2026 KIR &mdash; Seleksi Kelompok Ilmiah Remaja</div>
@@ -462,7 +455,6 @@
 <script>
 (function(){
 
-  // ---------- Data peserta (final, 42 peserta lulus) ----------
   const pesertaData = [
     {nama:"NIKOLAS OBIE MATEO", kelas:"X.E2", status:"Lulus", nilai:"88,5", peringkat:"01", nisn:"0116795583"},
     {nama:"DHEANEISHA RAHDATUL AISY", kelas:"X.E1", status:"Lulus", nilai:"85,1", peringkat:"02", nisn:"0105059361"},
@@ -522,7 +514,6 @@
   const pageResult = document.getElementById('page-result');
   const resultPanel = document.getElementById('resultPanel');
 
-  // ---------- Kelas picker (custom bottom sheet) ----------
   function openKelasSheet(){
     kelasSheet.classList.add('show');
     kelasScrim.classList.add('show');
@@ -549,7 +540,6 @@
     });
   });
 
-  // ---------- Data matching ----------
   function normalizeName(s){
     return s.trim().replace(/\s+/g,' ').toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g,'');
@@ -564,7 +554,6 @@
     return null;
   }
 
-  // ---------- Result rendering ----------
   function row(label, value){
     return `<div class="cell"><div class="label">${label}</div><div class="value">${value}</div></div>`;
   }
@@ -657,7 +646,6 @@
     if(btnBack) btnBack.addEventListener('click', ()=> switchPage(pageResult, pageForm));
   }
 
-  // ---------- Smooth page transition ----------
   function switchPage(from, to){
     const fromPanel = from.querySelector('.panel');
     fromPanel.style.transform = 'translateY(10px)';
@@ -680,7 +668,6 @@
     }, 260);
   }
 
-  // ---------- Submit ----------
   form.addEventListener('submit', function(e){
     e.preventDefault();
     const nama = namaInput.value.trim();
